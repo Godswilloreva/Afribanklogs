@@ -1,118 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Withdraw Funds</title>
+  <title>African Countries Withdrawal Form</title>
 </head>
-<body style="background-color:#0b0b2b; font-family:'Segoe UI', sans-serif; color:#fff; padding:30px;">
+<header><center><p3>Choose from which options you want your withdrawal to be,funds are processed immediately</p3> </center></header>
+<body style="margin:0; padding:0; background:#0d0d2b; font-family:sans-serif; color:#fff;">
 
-  <div style="max-width:600px; margin:auto; background:#111138; padding:30px; border-radius:15px; box-shadow:0 0 15px #00ffff90;">
-    
-    <h2 style="text-align:center; color:#00ffff; margin-bottom:10px;">Withdraw Funds</h2>
-    <p style="text-align:center; color:#ffcc00;">✅ Instant withdrawal within 10 minutes of request</p>
+  <div style="background:#111339; padding:25px; border-radius:10px; max-width:600px; margin:50px auto; box-shadow:0 0 15px #00ffcc44;">
+    <h2 style="text-align:center; color:#00ffcc;">Withdraw Funds (Africa)</h2>
 
-    <form onsubmit="event.preventDefault(); startWithdraw(this);" style="margin-top:25px;">
+    <label for="country">Select Your Country:</label>
+    <select id="country" onchange="renderCountryForm()" style="width:100%; padding:10px; margin:10px 0 20px 0; border:none; border-radius:6px; background:#1a1a40; color:#fff;">
+      <option value="">-- Choose Country --</option>
+      <option value="nigeria">Nigeria</option>
+      <option value="ghana">Ghana</option>
+      <option value="kenya">Kenya</option>
+      <option value="southafrica">South Africa</option>
+      <option value="liberia">Liberia</option>
+      <option value="senegal">Senegal</option>
+      <option value="cameroon">Cameroon</option>
+      <option value="uganda">Uganda</option>
+      <option value="tanzania">Tanzania</option>
+      <option value="zambia">Zambia</option>
+    </select>
 
-      <label style="display:block; margin-bottom:8px;">Select Crypto:</label>
-      <select name="crypto" required style="width:100%; padding:10px; border:none; border-radius:8px; background:#1c1c3b; color:#fff; margin-bottom:20px;">
-        <option value="">-- Choose --</option>
-        <option value="bitcoin">Bitcoin (BTC)</option>
-        <option value="usdt">USDT (TRC20)</option>
-        <option value="pi">Pi Network</option>
-        <option value="ethereum">Ethereum (ERC20)</option>
-      </select>
+    <div id="countryForm"></div>
 
-      <label style="display:block; margin-bottom:8px;">Wallet Address:</label>
-      <input type="text" name="wallet" required placeholder="Enter your crypto wallet address" style="width:100%; padding:10px; border:none; border-radius:8px; background:#1c1c3b; color:#fff; margin-bottom:20px;" />
-
-      <label style="display:block; margin-bottom:8px;">Amount to Withdraw ($):</label>
-      <input type="number" name="amount" required placeholder="Minimum $100" style="width:100%; padding:10px; border:none; border-radius:8px; background:#1c1c3b; color:#fff; margin-bottom:30px;" />
-
-      <button type="submit" id="withdrawBtn" style="width:100%; padding:12px; font-size:1rem; font-weight:bold; color:#00ffff; background:transparent; border:2px solid #00ffff; border-radius:50px; cursor:pointer;">
-        Withdraw Now
-      </button>
-    </form>
+    <button style="margin-top:20px; padding:12px 20px; background:#00ffcc; color:#000; border:none; border-radius:6px; font-weight:bold; width:100%; cursor:pointer;">Submit Withdrawal</button>
   </div>
-
-  <script>
-    function startWithdraw(form) {
-      const btn = document.getElementById('withdrawBtn');
-      btn.innerHTML = '<span style="width:18px; height:18px; border:3px solid #00ffff; border-top-color:transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>';
-      btn.disabled = true;
-
-      setTimeout(() => {
-        btn.innerHTML = 'Processing...';
-      }, 1500);
-    }
-
-    const style = document.createElement('style');
-    style.innerHTML = `
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-    `;
-    document.head.appendChild(style);
-  </script><br><br>
-
-
-
-
-
-
-
-div style="max-width:600px; margin:auto; background:#18184a; padding:25px; border-radius:15px; box-shadow:0 0 15px #00ffff55;">
-    <h2 style="text-align:center; color:#00ffff;">Withdraw Funds</h2>
-    <p style="text-align:center; color:#ffaa00;">Select your country and complete your local withdrawal form</p>
-
-    <form onsubmit="event.preventDefault(); withdrawNow();" style="margin-top:20px;">
-      <label style="display:block; margin-bottom:10px;">Choose Country:</label>
-      <select id="country" onchange="loadForm()" required style="width:100%; padding:10px; background:#1d1d3f; color:#fff; border:none; border-radius:8px; margin-bottom:20px;">
-        <option value="">-- Select Country --</option>
-        <option value="nigeria">Nigeria</option>
-        <option value="ghana">Ghana</option>
-        <option value="kenya">Kenya</option>
-        <option value="southafrica">South Africa</option>
-        <option value="liberia">Liberia</option>
-        <option value="senegal">Senegal</option>
-        <option value="cameroon">Cameroon</option>
-        <option value="uganda">Uganda</option>
-        <option value="tanzania">Tanzania</option>
-        <option value="zambia">Zambia</option>
-      </select>
-
-      <div id="formFields"></div>
-
-      <label style="display:block; margin-top:20px;">Withdraw Amount ($):</label>
-      <input type="number" required placeholder="Minimum $100" style="width:100%; padding:10px; background:#1e1e3f; color:#fff; border:none; border-radius:8px;" />
-
-      <button id="withdrawBtn" style="width:100%; padding:12px; font-weight:bold; font-size:1rem; color:#00ffff; background:transparent; border:2px solid #00ffff; border-radius:30px; cursor:pointer; margin-top:20px;">
-        Withdraw Now
-      </button>
-    </form>
-  </div>
-
-
-
-
-
-  <div style="background:#111339; padding:25px; border-radius:10px; max-width:600px; margin:auto; color:#fff; font-family:sans-serif; box-shadow:0 0 15px #00ffcc44;">
-  <h2 style="text-align:center; color:#00ffcc;">Withdraw Funds (Africa)</h2>
-  <label for="country">Select Your Country:</label>
-  <select id="country" onchange="renderCountryForm()" style="width:100%; padding:10px; margin:10px 0; border:none; border-radius:6px; background:#1a1a40; color:#fff;">
-    <option value="">-- Choose Country --</option>
-    <option value="nigeria">Nigeria</option>
-    <option value="ghana">Ghana</option>
-    <option value="kenya">Kenya</option>
-    <option value="southafrica">South Africa</option>
-    <option value="liberia">Liberia</option>
-    <option value="senegal">Senegal</option>
-    <option value="cameroon">Cameroon</option>
-    <option value="uganda">Uganda</option>
-    <option value="tanzania">Tanzania</option>
-    <option value="zambia">Zambia</option>
-  </select>
-
-  <div id="countryForm"></div>
 
   <script>
     function renderCountryForm() {
@@ -122,7 +37,7 @@ div style="max-width:600px; margin:auto; background:#18184a; padding:25px; borde
       const fields = {
         nigeria: `
           <label>Bank Name:</label>
-          <input type="text" placeholder="e.g. Access Bank" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px; margin-bottom:10px;">
+          <input type="text" placeholder="e.g. Access Bank" required style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
           <label>Account Number:</label>
           <input type="text" placeholder="e.g. 0123456789" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
@@ -136,7 +51,7 @@ div style="max-width:600px; margin:auto; background:#18184a; padding:25px; borde
         `,
         southafrica: `
           <label>Bank Name:</label>
-          <input type="text" placeholder="e.g. FNB" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px; margin-bottom:10px;">
+          <input type="text" placeholder="e.g. FNB" required style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
           <label>Account Number:</label>
           <input type="text" placeholder="e.g. 1234567890" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
@@ -168,8 +83,95 @@ div style="max-width:600px; margin:auto; background:#18184a; padding:25px; borde
 
       formArea.innerHTML = fields[country] || '';
     }
-  </script>
+  </script><br><br>
+
+
+
+
+<div style="max-width:600px;margin:50px auto;background:#0d0d2b;padding:25px;border-radius:10px;box-shadow:0 0 15px #00ffcc44;color:#fff;font-family:sans-serif;">
+  <h2 style="text-align:center;color:#00ffcc;">Withdraw Cryptocurrency</h2>
+
+  <label for="cryptoType">Select Crypto Type:</label>
+  <select id="cryptoType" style="width:100%;padding:10px;margin:10px 0 20px 0;border:none;border-radius:6px;background:#1a1a40;color:#fff;">
+    <option value="">-- Choose Crypto --</option>
+    <option value="bitcoin">Bitcoin (BTC)</option>
+    <option value="usdt">Tether (USDT)</option>
+    <option value="tron">Tron (TRX)</option>
+    <option value="bnb">BNB</option>
+    <option value="ethereum">Ethereum (ETH)</option>
+    <option value="litecoin">Litecoin (LTC)</option>
+  </select>
+
+  <label>Wallet Address:</label>
+  <input type="text" placeholder="Paste your wallet address" required style="width:100%;padding:10px;margin-bottom:15px;background:#1a1a40;color:#fff;border:none;border-radius:6px;">
+
+  <label>Amount to Withdraw:</label>
+  <input type="number" placeholder="Enter amount" required style="width:100%;padding:10px;margin-bottom:15px;background:#1a1a40;color:#fff;border:none;border-radius:6px;">
+
+  <label>Network (e.g. TRC20, ERC20, BEP20):</label>
+  <input type="text" placeholder="Enter network type" required style="width:100%;padding:10px;margin-bottom:15px;background:#1a1a40;color:#fff;border:none;border-radius:6px;">
+
+  <button style="width:100%;padding:12px;margin-top:10px;background:#00ffcc;color:#000;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">Submit Withdrawal</button>
+</div><br><br>
+
+
+
+<div style="max-width:600px;margin:50px auto;background:#1c1c3c;padding:25px;border-radius:10px;box-shadow:0 0 15px #ffcc00a0;color:#fff;font-family:sans-serif;">
+  <h2 style="text-align:center;color:#ffcc00;">Withdraw via Gift Card</h2>
+
+  <label for="cardType">Select Gift Card Type:</label>
+  <select id="cardType" style="width:100%;padding:10px;margin:10px 0 20px 0;border:none;border-radius:6px;background:#2c2c60;color:#fff;">
+    <option value="">-- Choose Gift Card --</option>
+    <option value="amazon">Amazon</option>
+    <option value="steam">Steam</option>
+    <option value="itunes">iTunes</option>
+    <option value="googleplay">Google Play</option>
+    <option value="apple">Apple Store</option>
+    <option value="walmart">Walmart</option>
+    <option value="visa">Visa Gift Card</option>
+  </select>
+
+  <label>Card Value ($):</label>
+  <input type="number" placeholder="Enter card value" required style="width:100%;padding:10px;margin-bottom:15px;background:#2c2c60;color:#fff;border:none;border-radius:6px;">
+
+  <label>Email to Receive Gift Card:</label>
+  <input type="email" placeholder="Enter your email address" required style="width:100%;padding:10px;margin-bottom:15px;background:#2c2c60;color:#fff;border:none;border-radius:6px;">
+
+  <button style="width:100%;padding:12px;margin-top:10px;background:#ffcc00;color:#000;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">Submit Gift Card Withdrawal</button>
+</div><br><br>
+
+
+
+
+<div style="max-width:600px;margin:50px auto;background:#16213e;padding:25px;border-radius:10px;box-shadow:0 0 15px #00ffffa0;color:#fff;font-family:sans-serif;">
+  <h2 style="text-align:center;color:#00ffff;">Withdraw via Sports Betting Wallet</h2>
+
+  <label for="bettingPlatform">Select Betting Platform:</label>
+  <select id="bettingPlatform" required style="width:100%;padding:10px;margin:10px 0 20px 0;border:none;border-radius:6px;background:#23395d;color:#fff;">
+    <option value="">-- Choose Platform --</option>
+    <option value="bet9ja">Bet9ja</option>
+    <option value="nairabet">NairaBet</option>
+    <option value="sportybet">SportyBet</option>
+    <option value="betway">Betway</option>
+    <option value="1xbet">1xBet</option>
+    <option value="msport">MSport</option>
+    <option value="bangbet">BangBet</option>
+  </select>
+
+  <label>Account Username or ID:</label>
+  <input type="text" placeholder="Enter your betting account ID" required style="width:100%;padding:10px;margin-bottom:15px;background:#23395d;color:#fff;border:none;border-radius:6px;">
+
+  <label>Amount to Withdraw ($):</label>
+  <input type="number" placeholder="Enter amount (minimum $100)" required style="width:100%;padding:10px;margin-bottom:15px;background:#23395d;color:#fff;border:none;border-radius:6px;">
+
+  <button style="width:100%;padding:12px;background:#00ffff;color:#000;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">Submit Withdrawal</button>
 </div>
+
+
+
+
+
+
 
 
 
