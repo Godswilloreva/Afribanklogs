@@ -60,37 +60,63 @@
 
 
 
-<div style="max-width:600px;margin:auto;background:#151540;padding:25px;border-radius:15px;box-shadow:0 0 15px #00ffcc80;color:#fff;font-family:sans-serif;">
-  <h2 style="text-align:center;color:#00ffcc;">Crypto Withdrawal</h2>
-  <p style="text-align:center;color:#ffcc00;">Enter the amount and your crypto wallet address</p>
+<div style="max-width:600px; margin:auto; background:#151540; padding:25px; border-radius:15px; box-shadow:0 0 10px #00ffff80; color:#fff; font-family:sans-serif;">
+  <h2 style="text-align:center; color:#00ffff;">Withdraw Funds</h2>
+  <p style="text-align:center; color:#ffcc00;">Choose your country and preferred withdrawal method</p>
 
-  <form onsubmit="event.preventDefault(); withdrawCrypto();" style="margin-top:20px;">
-    <label style="display:block;margin-bottom:10px;">Select Crypto:</label>
-    <select id="crypto" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;margin-bottom:20px;">
-      <option value="">-- Select Cryptocurrency --</option>
-      <option value="bitcoin">Bitcoin (BTC)</option>
-      <option value="usdt">USDT (TRC20)</option>
-      <option value="tron">Tron (TRX)</option>
-      <option value="bnb">BNB (BEP20)</option>
-      <option value="ethereum">Ethereum (ERC20)</option>
+  <form onsubmit="event.preventDefault(); withdrawNow();" style="margin-top:20px;">
+    <label style="display:block; margin-bottom:10px;">Select Country:</label>
+    <select id="country" onchange="updateMethod()" required style="width:100%; padding:10px; background:#1e1e3f; color:#fff; border:none; border-radius:8px; margin-bottom:20px;">
+      <option value="">-- Select your country --</option>
+      <option value="nigeria">Nigeria</option>
+      <option value="ghana">Ghana</option>
+      <option value="kenya">Kenya</option>
+      <option value="southafrica">South Africa</option>
+      <option value="liberia">Liberia</option>
+      <option value="senegal">Senegal</option>
+      <option value="cameroon">Cameroon</option>
+      <option value="uganda">Uganda</option>
+      <option value="tanzania">Tanzania</option>
+      <option value="zambia">Zambia</option>
     </select>
 
-    <label style="display:block;">Wallet Address:</label>
-    <input type="text" placeholder="Paste your wallet address here" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;margin-bottom:20px;" />
+    <div id="methodFields"></div>
 
-    <label style="display:block;">Amount ($):</label>
-    <input type="number" required placeholder="Minimum $50" style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;margin-bottom:20px;" />
+    <label style="display:block; margin-top:20px;">Amount ($):</label>
+    <input type="number" required placeholder="Minimum $100" style="width:100%; padding:10px; background:#1e1e3f; color:#fff; border:none; border-radius:8px; margin-bottom:20px;" />
 
-    <button id="cryptoWithdrawBtn" style="width:100%;padding:12px;font-weight:bold;font-size:1rem;color:#00ffcc;background:transparent;border:2px solid #00ffcc;border-radius:30px;cursor:pointer;">
-      Withdraw Crypto
+    <button id="withdrawBtn" style="width:100%; padding:12px; font-weight:bold; font-size:1rem; color:#00ffff; background:transparent; border:2px solid #00ffff; border-radius:30px; cursor:pointer;">
+      Withdraw Now
     </button>
   </form>
 </div>
 
 <script>
-  function withdrawCrypto() {
-    const btn = document.getElementById('cryptoWithdrawBtn');
-    btn.innerHTML = '<span style="width:18px;height:18px;border:3px solid #00ffcc;border-top-color:transparent;border-radius:50%;display:inline-block;animation:spin 1s linear infinite;"></span>';
+  function updateMethod() {
+    const country = document.getElementById("country").value;
+    const container = document.getElementById("methodFields");
+    let html = '';
+
+    const methods = {
+      nigeria: '<label>Bank Name:</label><input type="text" placeholder="e.g. Access Bank" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;margin-bottom:10px;" /><label>Account Number:</label><input type="text" placeholder="Enter Account Number" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" />',
+      ghana: '<label>Mobile Money Number:</label><input type="text" placeholder="e.g. 024xxxxxxx" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" />',
+      kenya: '<label>M-PESA Number:</label><input type="text" placeholder="e.g. 0712xxxxxx" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" />',
+      southafrica: '<label>Bank Account Number:</label><input type="text" placeholder="e.g. 1234567890" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" /><label>Bank Name:</label><input type="text" placeholder="e.g. Capitec" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" />',
+      liberia: '<label>Mobile Money (Lonestar/Orange):</label><input type="text" placeholder="e.g. 077xxxxxxx" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" />',
+      senegal: '<label>Wave/MoMo Number:</label><input type="text" placeholder="e.g. 77xxxxxxx" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" />',
+      cameroon: '<label>MTN MoMo Number:</label><input type="text" placeholder="e.g. 679xxxxxx" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" />',
+      uganda: '<label>Airtel Money/MTN:</label><input type="text" placeholder="e.g. 070xxxxxxx" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" />',
+      tanzania: '<label>TigoPesa/Airtel Money:</label><input type="text" placeholder="e.g. 065xxxxxxx" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" />',
+      zambia: '<label>Airtel/Telco Number:</label><input type="text" placeholder="e.g. 097xxxxxxx" required style="width:100%;padding:10px;background:#1e1e3f;color:#fff;border:none;border-radius:8px;" />',
+    };
+
+    html = methods[country] || '';
+    container.innerHTML = html;
+  }
+
+  function withdrawNow() {
+    const btn = document.getElementById('withdrawBtn');
+    btn.innerHTML = '<span style="width:18px;height:18px;border:3px solid #00ffff;border-top-color:transparent;border-radius:50%;display:inline-block;animation:spin 1s linear infinite;"></span>';
     btn.disabled = true;
 
     setTimeout(() => {
