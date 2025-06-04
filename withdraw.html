@@ -91,86 +91,85 @@ div style="max-width:600px; margin:auto; background:#18184a; padding:25px; borde
     </form>
   </div>
 
-  <script>
-    function loadForm() {
-      const c = document.getElementById("country").value;
-      const field = document.getElementById("formFields");
-      let form = "";
 
-      const inputs = {
+
+
+
+  <div style="background:#111339; padding:25px; border-radius:10px; max-width:600px; margin:auto; color:#fff; font-family:sans-serif; box-shadow:0 0 15px #00ffcc44;">
+  <h2 style="text-align:center; color:#00ffcc;">Withdraw Funds (Africa)</h2>
+  <label for="country">Select Your Country:</label>
+  <select id="country" onchange="renderCountryForm()" style="width:100%; padding:10px; margin:10px 0; border:none; border-radius:6px; background:#1a1a40; color:#fff;">
+    <option value="">-- Choose Country --</option>
+    <option value="nigeria">Nigeria</option>
+    <option value="ghana">Ghana</option>
+    <option value="kenya">Kenya</option>
+    <option value="southafrica">South Africa</option>
+    <option value="liberia">Liberia</option>
+    <option value="senegal">Senegal</option>
+    <option value="cameroon">Cameroon</option>
+    <option value="uganda">Uganda</option>
+    <option value="tanzania">Tanzania</option>
+    <option value="zambia">Zambia</option>
+  </select>
+
+  <div id="countryForm"></div>
+
+  <script>
+    function renderCountryForm() {
+      const country = document.getElementById("country").value;
+      const formArea = document.getElementById("countryForm");
+
+      const fields = {
         nigeria: `
-          <label>Bank Name:</label><input type="text" placeholder="Access, Zenith..." required style="${s()}" />
-          <label>Account Number:</label><input type="text" placeholder="10-digit NUBAN" required style="${s()}" />
-          <label>Account Name:</label><input type="text" placeholder="Your full name" required style="${s()}" />
+          <label>Bank Name:</label>
+          <input type="text" placeholder="e.g. Access Bank" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px; margin-bottom:10px;">
+          <label>Account Number:</label>
+          <input type="text" placeholder="e.g. 0123456789" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
         ghana: `
-          <label>Mobile Money Number:</label><input type="text" placeholder="024xxxxxxx" required style="${s()}" />
-          <label>Network:</label><input type="text" placeholder="MTN, Vodafone, etc" required style="${s()}" />
+          <label>Mobile Money Number:</label>
+          <input type="text" placeholder="e.g. 024xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
         kenya: `
-          <label>M-PESA Number:</label><input type="text" placeholder="07xxxxxxxx" required style="${s()}" />
-          <label>Account Name:</label><input type="text" placeholder="Your registered name" required style="${s()}" />
+          <label>M-PESA Number:</label>
+          <input type="text" placeholder="e.g. 0712xxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
         southafrica: `
-          <label>Bank Name:</label><input type="text" placeholder="Capitec, FNB, etc" required style="${s()}" />
-          <label>Account Number:</label><input type="text" placeholder="1234567890" required style="${s()}" />
-          <label>Account Type:</label><input type="text" placeholder="Savings / Cheque" required style="${s()}" />
+          <label>Bank Name:</label>
+          <input type="text" placeholder="e.g. FNB" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px; margin-bottom:10px;">
+          <label>Account Number:</label>
+          <input type="text" placeholder="e.g. 1234567890" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
         liberia: `
-          <label>Mobile Money Number:</label><input type="text" placeholder="077xxxxxxx" required style="${s()}" />
-          <label>Network:</label><input type="text" placeholder="Lonestar / Orange" required style="${s()}" />
+          <label>Mobile Money Number (Lonestar/Orange):</label>
+          <input type="text" placeholder="e.g. 077xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
         senegal: `
-          <label>MoMo/Wave Number:</label><input type="text" placeholder="77xxxxxxx" required style="${s()}" />
-          <label>Network:</label><input type="text" placeholder="Orange Money / Wave" required style="${s()}" />
+          <label>Wave or Orange Money Number:</label>
+          <input type="text" placeholder="e.g. 77xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
         cameroon: `
-          <label>MTN MoMo Number:</label><input type="text" placeholder="679xxxxxx" required style="${s()}" />
-          <label>Account Name:</label><input type="text" placeholder="Registered name" required style="${s()}" />
+          <label>MTN MoMo Number:</label>
+          <input type="text" placeholder="e.g. 679xxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
         uganda: `
-          <label>Mobile Number:</label><input type="text" placeholder="070xxxxxxx" required style="${s()}" />
-          <label>Network:</label><input type="text" placeholder="MTN / Airtel" required style="${s()}" />
+          <label>Mobile Money Number (MTN or Airtel):</label>
+          <input type="text" placeholder="e.g. 070xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
         tanzania: `
-          <label>Mobile Wallet Number:</label><input type="text" placeholder="065xxxxxxx" required style="${s()}" />
-          <label>Network:</label><input type="text" placeholder="TigoPesa, Airtel Money" required style="${s()}" />
+          <label>TigoPesa or Airtel Money:</label>
+          <input type="text" placeholder="e.g. 065xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
         `,
         zambia: `
-          <label>Mobile Money Number:</label><input type="text" placeholder="097xxxxxxx" required style="${s()}" />
-          <label>Network:</label><input type="text" placeholder="Airtel, MTN" required style="${s()}" />
-        `,
+          <label>Airtel Money Number:</label>
+          <input type="text" placeholder="e.g. 097xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
+        `
       };
 
-      form = inputs[c] || "";
-      field.innerHTML = form;
+      formArea.innerHTML = fields[country] || '';
     }
-
-    function withdrawNow() {
-      const btn = document.getElementById("withdrawBtn");
-      btn.innerHTML = `<span style="width:18px;height:18px;border:3px solid #00ffff;border-top-color:transparent;border-radius:50%;display:inline-block;animation:spin 1s linear infinite;"></span> Processing...`;
-      btn.disabled = true;
-
-      setTimeout(() => {
-        btn.innerHTML = "✅ Payment not confirmed yet";
-        btn.disabled = false;
-      }, 4000);
-    }
-
-    function s() {
-      return "width:100%; padding:10px; background:#1e1e3f; color:#fff; border:none; border-radius:8px; margin-bottom:15px;";
-    }
-
-    const style = document.createElement("style");
-    style.innerHTML = `@keyframes spin { to { transform: rotate(360deg); } }`;
-    document.head.appendChild(style);
   </script>
-</body>
-
-
-
-
-
+</div>
 
 
 
