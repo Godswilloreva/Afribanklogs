@@ -1,0 +1,80 @@
+<section style="background-color: #0b0b2b; min-height: 100vh; padding: 40px 15px; font-family: 'Segoe UI', sans-serif; color: #eee;">
+  <div style="max-width: 1150px; margin: auto;">
+
+    <h1 style="text-align: center; color: #00ffff; font-weight: bold; font-size: 2.5rem; margin-bottom: 10px;">
+      Logs Purchase - Egypt 🇪🇬
+    </h1>
+    <p style="text-align: center; font-weight: 600; font-size: 1.1rem; color: #ffcc00; margin-bottom: 30px;">
+      ✅ Instant withdrawal within 10 minutes of placing withdrawal
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+
+      <!-- Bank Card Template -->
+      <div style="background: linear-gradient(145deg, #0a0a2c, #1c1c4f); border-radius: 18px; padding: 20px 25px; box-shadow: 0 0 15px #00ffe1a1; display: flex; flex-direction: column; justify-content: space-between; min-height: 165px;">
+        <div>
+          <h3 style="font-weight: 700; color: #00ffff;">National Bank of Egypt</h3>
+          <p><strong>Balance:</strong> EGP 170,000</p>
+          <p><strong>Price:</strong> EGP 12,000</p>
+        </div>
+        <button onclick="rotateCircle(this)" style="margin-top: 15px; padding: 10px 0; background: transparent; border: 2px solid #00ffff; color: #00ffff; font-weight: 700; font-size: 1rem; border-radius: 50px; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease;">
+          Buy Now
+        </button>
+      </div>
+
+      <div style="background: linear-gradient(145deg, #0a0a2c, #1c1c4f); border-radius: 18px; padding: 20px 25px; box-shadow: 0 0 15px #00ffe1a1;">
+        <div>
+          <h3 style="font-weight: 700; color: #00ffff;">Banque Misr</h3>
+          <p><strong>Balance:</strong> EGP 220,000</p>
+          <p><strong>Price:</strong> EGP 40,000</p>
+        </div>
+        <button onclick="rotateCircle(this)" style="margin-top: 15px; padding: 10px 0; background: transparent; border: 2px solid #00ffff; color: #00ffff; font-weight: 700; font-size: 1rem; border-radius: 50px; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease;">
+          Buy Now
+        </button>
+      </div>
+
+      <div style="background: linear-gradient(145deg, #0a0a2c, #1c1c4f); border-radius: 18px; padding: 20px 25px; box-shadow: 0 0 15px #00ffe1a1;">
+        <div>
+          <h3 style="font-weight: 700; color: #00ffff;">CIB Egypt</h3>
+          <p><strong>Balance:</strong> EGP 130,000</p>
+          <p><strong>Price:</strong> EGP 35,000</p>
+        </div>
+        <button onclick="rotateCircle(this)" style="margin-top: 15px; padding: 10px 0; background: transparent; border: 2px solid #00ffff; color: #00ffff; font-weight: 700; font-size: 1rem; border-radius: 50px; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease;">
+          Buy Now
+        </button>
+      </div>
+
+      <div style="background: linear-gradient(145deg, #0a0a2c, #1c1c4f); border-radius: 18px; padding: 20px 25px; box-shadow: 0 0 15px #00ffe1a1;">
+        <div>
+          <h3 style="font-weight: 700; color: #00ffff;">AlexBank</h3>
+          <p><strong>Balance:</strong> EGP 85,000</p>
+          <p><strong>Price:</strong> EGP 8,000</p>
+        </div>
+        <button onclick="rotateCircle(this)" style="margin-top: 15px; padding: 10px 0; background: transparent; border: 2px solid #00ffff; color: #00ffff; font-weight: 700; font-size: 1rem; border-radius: 50px; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; transition: all 0.4s ease;">
+          Buy Now
+        </button>
+      </div>
+
+      <!-- Add more banks below if needed... -->
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function rotateCircle(btn) {
+    btn.innerHTML = '<span style="width: 18px; height: 18px; border: 3px solid #00ffff; border-top-color: transparent; border-radius: 50%; display: inline-block; animation: spin 1s linear infinite;"></span>';
+    setTimeout(() => {
+      btn.innerHTML = 'Please fund your account';
+    }, 1800);
+  }
+
+  // Spinner animation
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  `;
+  document.head.appendChild(style);
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crypto Deposit</title>
+</head>
+<body style="margin:0; font-family:Arial, sans-serif; background-color:#0e0e2c; color:#eee; display:flex; flex-direction:column; align-items:center; padding:40px;">
+
+  <h1 style="color:#00ffff; font-size:2rem; margin-bottom:20px;">Select Crypto to Deposit</h1>
+
+  <select id="cryptoSelect" onchange="showAddress()" style="padding:10px 20px; border-radius:8px; background:#101032; color:#fff; border:none; font-size:1rem; margin-bottom:30px;">
+    <option value="">-- Choose Cryptocurrency --</option>
+    <option value="btc">Bitcoin (BTC)</option>
+    <option value="pi">Pi Network</option>
+    <option value="usdt">USDT (TRC20)</option>
+    <option value="eth">Ethereum (ERC20)</option>
+  </select>
+
+  <div id="addressContainer" style="display:none; background:#1a1a3d; padding:20px; border-radius:12px; width:90%; max-width:600px; text-align:center; box-shadow:0 0 10px #00ffff;">
+    <h2 id="cryptoName" style="color:#00ffff; margin-bottom:10px;"></h2>
+    <p id="cryptoAddress" style="word-break:break-all; font-size:1.1rem; margin-bottom:15px;"></p>
+    <button onclick="copyAddress()" style="padding:10px 20px; background:#00ffff; color:#000; border:none; border-radius:6px; cursor:pointer;">Copy Address</button>
+  </div>
+
+  <button onclick="handlePayment()" id="payBtn" style="margin-top:40px; padding:12px 25px; font-size:1rem; background:#ffcc00; color:#000; border:none; border-radius:8px; cursor:pointer;">
+    I have paid
+  </button>
+
+  <p id="paymentStatus" style="margin-top:20px; font-size:1.1rem;"></p>
+
+  <script>
+    const addresses = {
+      btc: {
+        name: "Bitcoin (BTC) Address",
+        value: "3BfoU2qv6ytuAb6XFQGxwUBUJETaV75hEi"
+      },
+      pi: {
+        name: "Pi Network Address",
+        value: "MDJYPX7HSZ5XZYNBJIWV6KCVV6RGMCDUBH3FTJL22TOGPNFQI6LN2AAAAAAAACYE4UUN4"
+      },
+      usdt: {
+        name: "USDT (TRC20) Address",
+        value: "TB4YyUMmFV8NK1GqZyWkENNPAkPbDf7sCv"
+      },
+      eth: {
+        name: "Ethereum (ERC20) Address",
+        value: "0x272691b6300a719fd1d8e7524f4c28fade078243"
+      }
+    };
+
+    function showAddress() {
+      const select = document.getElementById('cryptoSelect');
+      const selected = select.value;
+
+      if (selected && addresses[selected]) {
+        document.getElementById('cryptoName').innerText = addresses[selected].name;
+        document.getElementById('cryptoAddress').innerText = addresses[selected].value;
+        document.getElementById('addressContainer').style.display = 'block';
+      } else {
+        document.getElementById('addressContainer').style.display = 'none';
+      }
+    }
+
+    function copyAddress() {
+      const text = document.getElementById('cryptoAddress').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Address copied to clipboard!");
+      });
+    }
+
+    function handlePayment() {
+      const btn = document.getElementById('payBtn');
+      const status = document.getElementById('paymentStatus');
+
+      btn.innerHTML = "⭮ Verifying...";
+      btn.disabled = true;
+
+      setTimeout(() => {
+        status.innerText = "⚠️ Payment not confirmed yet";
+        btn.innerHTML = "I have paid";
+        btn.disabled = false;
+      }, 3000); // Simulates confirmation delay
+    }
+  </script><br><b>
+
+
+
+<div style="margin-top:40px; background:#111138; padding:20px; border-radius:10px; max-width:700px; width:90%; color:#ccc; font-size:1rem; line-height:1.6;">
+  <h2 style="color:#00ffff; font-size:1.5rem; margin-bottom:10px;">Important Deposit Instructions</h2>
+  <p>Please select your preferred cryptocurrency above, copy the corresponding wallet address, and make your payment. Once you've made the transfer, click the <strong>"I have paid"</strong> button to begin the verification process.</p>
+  <p><strong>Minimum deposit:</strong> $100<br>
+  <strong>Confirmation time:</strong> Within 30 minutes (depending on network traffic)</p>
+  <p>If your payment is not confirmed within the expected timeframe, please contact support immediately with your transaction ID and screenshot.</p>
+  <p style="margin-top:10px;"><strong>Note:</strong> Always double-check the wallet address before sending your payment. We are not responsible for funds sent to the wrong address.</p>
+</div>
+
+</body>
+</html>

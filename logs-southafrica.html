@@ -1,0 +1,74 @@
+<section style="background-color: #0b0b2b; min-height: 100vh; padding: 40px 15px; font-family: 'Segoe UI', sans-serif; color: #eee;">
+  <div style="max-width: 1150px; margin: auto;">
+
+    <h1 style="text-align: center; color: #00ffff; font-weight: bold; font-size: 2.5rem; margin-bottom: 10px;">
+      Logs Purchase - South Africa 🇿🇦
+    </h1>
+    <p style="text-align: center; font-weight: 600; font-size: 1.1rem; color: #ffcc00; margin-bottom: 30px;">
+      ✅ Instant withdrawal within 10 minutes of placing withdrawal
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+
+      <div style="background: linear-gradient(145deg, #0a0a2c, #1c1c4f); border-radius: 18px; padding: 20px 25px; box-shadow: 0 0 15px #00ffe1a1;">
+        <h3 style="font-weight: 700; color: #00ffff;">Standard Bank</h3>
+        <p><strong>Balance:</strong> ZAR 500,000</p>
+        <p><strong>Price:</strong> ZAR 20,000</p>
+        <button onclick="rotateCircle(this)" style="margin-top: 15px; padding: 10px; background: transparent; border: 2px solid #00ffff; color: #00ffff; border-radius: 50px; cursor: pointer;">Buy Now</button>
+      </div>
+
+      <div style="background: linear-gradient(145deg, #0a0a2c, #1c1c4f); border-radius: 18px; padding: 20px 25px; box-shadow: 0 0 15px #00ffe1a1;">
+        <h3 style="font-weight: 700; color: #00ffff;">First National Bank (FNB)</h3>
+        <p><strong>Balance:</strong> ZAR 450,000</p>
+        <p><strong>Price:</strong> ZAR 18,000</p>
+        <button onclick="rotateCircle(this)" style="margin-top: 15px; padding: 10px; background: transparent; border: 2px solid #00ffff; color: #00ffff; border-radius: 50px; cursor: pointer;">Buy Now</button>
+      </div>
+
+      <div style="background: linear-gradient(145deg, #0a0a2c, #1c1c4f); border-radius: 18px; padding: 20px 25px; box-shadow: 0 0 15px #00ffe1a1;">
+        <h3 style="font-weight: 700; color: #00ffff;">Nedbank</h3>
+        <p><strong>Balance:</strong> ZAR 400,000</p>
+        <p><strong>Price:</strong> ZAR 16,000</p>
+        <button onclick="rotateCircle(this)" style="margin-top: 15px; padding: 10px; background: transparent; border: 2px solid #00ffff; color: #00ffff; border-radius: 50px; cursor: pointer;">Buy Now</button>
+      </div>
+
+      <div style="background: linear-gradient(145deg, #0a0a2c, #1c1c4f); border-radius: 18px; padding: 20px 25px; box-shadow: 0 0 15px #00ffe1a1;">
+        <h3 style="font-weight: 700; color: #00ffff;">Capitec Bank</h3>
+        <p><strong>Balance:</strong> ZAR 550,000</p>
+        <p><strong>Price:</strong> ZAR 22,000</p>
+        <button onclick="rotateCircle(this)" style="margin-top: 15px; padding: 10px; background: transparent; border: 2px solid #00ffff; color: #00ffff; border-radius: 50px; cursor: pointer;">Buy Now</button>
+      </div>
+
+      <div style="background: linear-gradient(145deg, #0a0a2c, #1c1c4f); border-radius: 18px; padding: 20px 25px; box-shadow: 0 0 15px #00ffe1a1;">
+        <h3 style="font-weight: 700; color: #00ffff;">African Bank</h3>
+        <p><strong>Balance:</strong> ZAR 380,000</p>
+        <p><strong>Price:</strong> ZAR 15,000</p>
+        <button onclick="rotateCircle(this)" style="margin-top: 15px; padding: 10px; background: transparent; border: 2px solid #00ffff; color: #00ffff; border-radius: 50px; cursor: pointer;">Buy Now</button>
+      </div>
+
+      <div style="background: linear-gradient(145deg, #0a0a2c, #1c1c4f); border-radius: 18px; padding: 20px 25px; box-shadow: 0 0 15px #00ffe1a1;">
+        <h3 style="font-weight: 700; color: #00ffff;">Bidvest Bank</h3>
+        <p><strong>Balance:</strong> ZAR 470,000</p>
+        <p><strong>Price:</strong> ZAR 19,000</p>
+        <button onclick="rotateCircle(this)" style="margin-top: 15px; padding: 10px; background: transparent; border: 2px solid #00ffff; color: #00ffff; border-radius: 50px; cursor: pointer;">Buy Now</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function rotateCircle(btn) {
+    btn.innerHTML = '<span style="width: 18px; height: 18px; border: 3px solid #00ffff; border-top-color: transparent; border-radius: 50%; display: inline-block; animation: spin 1s linear infinite;"></span>';
+    setTimeout(() => {
+      btn.innerHTML = 'Please fund your account';
+    }, 1800);
+  }
+
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  `;
+  document.head.appendChild(style);
+</script>
