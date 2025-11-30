@@ -1,181 +1,267 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>African Countries Withdrawal Form</title>
+  <title>| T R A N S F E R | - :: W I T H D R A W A L M O D U L E ::</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    /* Global Terminal/AI Variables */
+    :root {
+      --color-primary: #00ff41; /* Neon Green */
+      --color-secondary: #008823; /* Darker Green */
+      --color-background: #080808; /* Deep Space Black */
+      --color-surface: #1a1a1a; /* Dark Surface */
+      --color-text-main: #00ff41;
+      --color-text-dim: #555555;
+      --color-accent-crypto: #ffc107; /* Yellow for Crypto */
+      --color-accent-gift: #ff6f00; /* Orange for Gift Card */
+      --color-accent-bet: #00bfff; /* Cyan for Betting */
+      --font-mono: 'Consolas', 'Courier New', monospace;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 10px;
+      background: var(--color-background);
+      font-family: var(--font-mono);
+      color: var(--color-text-main);
+    }
+    
+    /* Global Header */
+    header {
+        margin-bottom: 25px;
+        padding: 10px;
+        border-bottom: 1px dashed var(--color-secondary);
+        text-align: center;
+        color: var(--color-text-dim);
+    }
+    header p3 {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+
+    /* Withdrawal Card Base Style */
+    .withdrawal-card {
+        background: var(--color-surface);
+        padding: 25px;
+        border-radius: 0;
+        max-width: 600px;
+        margin: 30px auto;
+        border: 2px solid var(--color-primary);
+        box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+    }
+    .withdrawal-card h2 {
+        text-align: center;
+        color: var(--color-primary);
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        border-bottom: 1px solid var(--color-primary);
+        padding-bottom: 5px;
+    }
+
+    /* Specific Card Color Overrides */
+    .card-crypto { border-color: var(--color-accent-crypto); box-shadow: 0 0 15px rgba(255, 193, 7, 0.4); }
+    .card-crypto h2 { color: var(--color-accent-crypto); border-bottom-color: var(--color-accent-crypto); }
+    
+    .card-gift { border-color: var(--color-accent-gift); background: #231b15; box-shadow: 0 0 15px rgba(255, 111, 0, 0.4); }
+    .card-gift h2 { color: var(--color-accent-gift); border-bottom-color: var(--color-accent-gift); }
+
+    .card-bet { border-color: var(--color-accent-bet); background: #151b23; box-shadow: 0 0 15px rgba(0, 191, 255, 0.4); }
+    .card-bet h2 { color: var(--color-accent-bet); border-bottom-color: var(--color-accent-bet); }
+
+    /* Form Elements */
+    label {
+        color: var(--color-secondary);
+        font-size: 0.9rem;
+        margin-top: 10px;
+        display: block;
+    }
+    select, input[type="text"], input[type="number"], input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 10px 0;
+        border: 1px solid var(--color-secondary);
+        border-radius: 0;
+        background: var(--color-background);
+        color: var(--color-primary);
+        font-family: var(--font-mono);
+        box-shadow: none !important;
+    }
+    select:focus, input:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 5px var(--color-primary) !important;
+    }
+
+    /* Submit Buttons */
+    .btn-submit {
+        margin-top: 20px;
+        padding: 12px 20px;
+        background: var(--color-primary);
+        color: var(--color-background);
+        border: none;
+        border-radius: 0;
+        font-weight: bold;
+        width: 100%;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.2s;
+    }
+    .btn-submit:hover {
+        background: var(--color-secondary);
+        box-shadow: 0 0 10px var(--color-primary);
+    }
+
+    /* Specific Button Colors */
+    .btn-crypto { background: var(--color-accent-crypto); }
+    .btn-crypto:hover { background: #e0ac00; box-shadow: 0 0 10px var(--color-accent-crypto); }
+
+    .btn-gift { background: var(--color-accent-gift); }
+    .btn-gift:hover { background: #e66000; box-shadow: 0 0 10px var(--color-accent-gift); }
+
+    .btn-bet { background: var(--color-accent-bet); }
+    .btn-bet:hover { background: #00a4d4; box-shadow: 0 0 10px var(--color-accent-bet); }
+  </style>
 </head>
-<header><center><p3>Choose from which options you want your withdrawal to be,funds are processed immediately</p3> </center></header>
-<body style="margin:0; padding:0; background:#0d0d2b; font-family:sans-serif; color:#fff;">
+<body>
 
-  <div style="background:#111339; padding:25px; border-radius:10px; max-width:600px; margin:50px auto; box-shadow:0 0 15px #00ffcc44;">
-    <h2 style="text-align:center; color:#00ffcc;">Withdraw Funds (Africa)</h2>
+  <header>
+    <center><p3>// TRANSFER MODULE ONLINE. SELECT OUTPUT PROTOCOL. FUNDS ARE PROCESSED IMMEDIATELY // </p3> </center>
+  </header>
 
-    <label for="country">Select Your Country:</label>
-    <select id="country" onchange="renderCountryForm()" style="width:100%; padding:10px; margin:10px 0 20px 0; border:none; border-radius:6px; background:#1a1a40; color:#fff;">
-      <option value="">-- Choose Country --</option>
-      <option value="nigeria">Nigeria</option>
-      <option value="ghana">Ghana</option>
-      <option value="kenya">Kenya</option>
-      <option value="southafrica">South Africa</option>
-      <option value="liberia">Liberia</option>
-      <option value="senegal">Senegal</option>
-      <option value="cameroon">Cameroon</option>
-      <option value="uganda">Uganda</option>
-      <option value="tanzania">Tanzania</option>
-      <option value="zambia">Zambia</option>
+  <div class="withdrawal-card">
+    <h2><i class="fas fa-money-bill-wave"></i> :: MOBILE MONEY/BANK TRANSFER NODE ::</h2>
+
+    <label for="country">SELECT TARGET REGION NODE:</label>
+    <select id="country" onchange="renderCountryForm()">
+      <option value="">-- CHOOSE COUNTRY --</option>
+      <option value="nigeria">NIGERIA (BANK)</option>
+      <option value="ghana">GHANA (MOMO)</option>
+      <option value="kenya">KENYA (M-PESA)</option>
+      <option value="southafrica">SOUTH AFRICA (BANK)</option>
+      <option value="liberia">LIBERIA (MOMO)</option>
+      <option value="senegal">SENEGAL (WAVE/ORANGE)</option>
+      <option value="cameroon">CAMEROON (MTN MOMO)</option>
+      <option value="uganda">UGANDA (MOMO)</option>
+      <option value="tanzania">TANZANIA (TIGOPESA/AIRTEL)</option>
+      <option value="zambia">ZAMBIA (AIRTEL MONEY)</option>
     </select>
+    
+    <label>AMOUNT TO TRANSFER ($):</label>
+    <input type="number" placeholder="ENTER AMOUNT (USD EQUIVALENT)" required>
 
     <div id="countryForm"></div>
 
-    <button style="margin-top:20px; padding:12px 20px; background:#00ffcc; color:#000; border:none; border-radius:6px; font-weight:bold; width:100%; cursor:pointer;">Submit Withdrawal</button>
+    <button class="btn-submit"><i class="fas fa-paper-plane"></i> SUBMIT TRANSFER REQUEST</button>
   </div>
+
+  <div class="withdrawal-card card-crypto">
+    <h2><i class="fab fa-bitcoin"></i> :: CRYPTOCURRENCY OUTPUT NODE ::</h2>
+
+    <label for="cryptoType">SELECT CRYPTO PROTOCOL:</label>
+    <select id="cryptoType">
+      <option value="">-- CHOOSE CRYPTO --</option>
+      <option value="bitcoin">BITCOIN (BTC)</option>
+      <option value="usdt">TETHER (USDT)</option>
+      <option value="tron">TRON (TRX)</option>
+      <option value="bnb">BNB</option>
+      <option value="ethereum">ETHEREUM (ETH)</option>
+      <option value="litecoin">LITECOIN (LTC)</option>
+    </select>
+
+    <label>DESTINATION WALLET ADDRESS:</label>
+    <input type="text" placeholder="PASTE WALLET ADDRESS" required>
+
+    <label>AMOUNT TO TRANSFER:</label>
+    <input type="number" placeholder="ENTER AMOUNT" required>
+
+    <label>NETWORK PROTOCOL (e.g. TRC20, ERC20, BEP20):</label>
+    <input type="text" placeholder="ENTER NETWORK TYPE" required>
+
+    <button class="btn-submit btn-crypto"><i class="fas fa-share"></i> SUBMIT CRYPTO TRANSFER</button>
+  </div>
+
+  <div class="withdrawal-card card-gift">
+    <h2><i class="fas fa-gift"></i> :: VOUCHER/GIFT CARD GENERATION ::</h2>
+
+    <label for="cardType">SELECT VOUCHER TYPE:</label>
+    <select id="cardType">
+      <option value="">-- CHOOSE GIFT CARD --</option>
+      <option value="amazon">AMAZON</option>
+      <option value="steam">STEAM</option>
+      <option value="itunes">ITUNES</option>
+      <option value="googleplay">GOOGLE PLAY</option>
+      <option value="apple">APPLE STORE</option>
+      <option value="walmart">WALMART</option>
+      <option value="visa">VISA GIFT CARD</option>
+    </select>
+
+    <label>VOUCHER VALUE ($):</label>
+    <input type="number" placeholder="ENTER CARD VALUE" required>
+
+    <label>RECIPIENT EMAIL NODE:</label>
+    <input type="email" placeholder="ENTER EMAIL ADDRESS" required>
+
+    <button class="btn-submit btn-gift"><i class="fas fa-ticket-alt"></i> GENERATE VOUCHER</button>
+  </div>
+
+  <div class="withdrawal-card card-bet">
+    <h2><i class="fas fa-futbol"></i> :: BETTING PLATFORM INJECTION ::</h2>
+
+    <label for="bettingPlatform">SELECT PLATFORM TARGET:</label>
+    <select id="bettingPlatform" required>
+      <option value="">-- CHOOSE PLATFORM --</option>
+      <option value="bet9ja">BET9JA</option>
+      <option value="nairabet">NAIRABET</option>
+      <option value="sportybet">SPORTYBET</option>
+      <option value="betway">BETWAY</option>
+      <option value="1xbet">1XBET</option>
+      <option value="msport">MSPORT</option>
+      <option value="bangbet">BANGBET</option>
+    </select>
+
+    <label>ACCOUNT ID/USERNAME:</label>
+    <input type="text" placeholder="ENTER BETTING ACCOUNT ID" required>
+
+    <label>AMOUNT TO INJECT ($):</label>
+    <input type="number" placeholder="ENTER AMOUNT (MIN $100)" required>
+
+    <button class="btn-submit btn-bet"><i class="fas fa-upload"></i> INJECT FUNDS TO WALLET</button>
+  </div>
+
 
   <script>
     function renderCountryForm() {
       const country = document.getElementById("country").value;
       const formArea = document.getElementById("countryForm");
+      
+      // Function to generate styled input field HTML
+      const createInput = (label, type, placeholder) => `
+          <label>${label}</label>
+          <input type="${type}" placeholder="${placeholder}" required>
+      `;
 
       const fields = {
-        nigeria: `
-          <label>Bank Name:</label>
-          <input type="text" placeholder="e.g. Access Bank" required style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-          <label>Account Number:</label>
-          <input type="text" placeholder="e.g. 0123456789" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-        `,
-        ghana: `
-          <label>Mobile Money Number:</label>
-          <input type="text" placeholder="e.g. 024xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-        `,
-        kenya: `
-          <label>M-PESA Number:</label>
-          <input type="text" placeholder="e.g. 0712xxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-        `,
-        southafrica: `
-          <label>Bank Name:</label>
-          <input type="text" placeholder="e.g. FNB" required style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-          <label>Account Number:</label>
-          <input type="text" placeholder="e.g. 1234567890" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-        `,
-        liberia: `
-          <label>Mobile Money Number (Lonestar/Orange):</label>
-          <input type="text" placeholder="e.g. 077xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-        `,
-        senegal: `
-          <label>Wave or Orange Money Number:</label>
-          <input type="text" placeholder="e.g. 77xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-        `,
-        cameroon: `
-          <label>MTN MoMo Number:</label>
-          <input type="text" placeholder="e.g. 679xxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-        `,
-        uganda: `
-          <label>Mobile Money Number (MTN or Airtel):</label>
-          <input type="text" placeholder="e.g. 070xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-        `,
-        tanzania: `
-          <label>TigoPesa or Airtel Money:</label>
-          <input type="text" placeholder="e.g. 065xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-        `,
-        zambia: `
-          <label>Airtel Money Number:</label>
-          <input type="text" placeholder="e.g. 097xxxxxxx" required style="width:100%; padding:10px; background:#1a1a40; color:#fff; border:none; border-radius:6px;">
-        `
+        nigeria: createInput("BANK NAME:", "text", "e.g. ACCESS BANK") + createInput("ACCOUNT NUMBER:", "text", "e.g. 0123456789"),
+        ghana: createInput("MOBILE MONEY NUMBER:", "text", "e.g. 024xxxxxxx"),
+        kenya: createInput("M-PESA NUMBER:", "text", "e.g. 0712xxxxxx"),
+        southafrica: createInput("BANK NAME:", "text", "e.g. FNB") + createInput("ACCOUNT NUMBER:", "text", "e.g. 1234567890"),
+        liberia: createInput("MOBILE MONEY NUMBER (LONESTAR/ORANGE):", "text", "e.g. 077xxxxxxx"),
+        senegal: createInput("WAVE OR ORANGE MONEY NUMBER:", "text", "e.g. 77xxxxxxx"),
+        cameroon: createInput("MTN MOMO NUMBER:", "text", "e.g. 679xxxxxx"),
+        uganda: createInput("MOBILE MONEY NUMBER (MTN OR AIRTEL):", "text", "e.g. 070xxxxxxx"),
+        tanzania: createInput("TIGOPESA OR AIRTEL MONEY:", "text", "e.g. 065xxxxxxx"),
+        zambia: createInput("AIRTEL MONEY NUMBER:", "text", "e.g. 097xxxxxxx")
       };
 
       formArea.innerHTML = fields[country] || '';
     }
-  </script><br><br>
-
-
-
-
-<div style="max-width:600px;margin:50px auto;background:#0d0d2b;padding:25px;border-radius:10px;box-shadow:0 0 15px #00ffcc44;color:#fff;font-family:sans-serif;">
-  <h2 style="text-align:center;color:#00ffcc;">Withdraw Cryptocurrency</h2>
-
-  <label for="cryptoType">Select Crypto Type:</label>
-  <select id="cryptoType" style="width:100%;padding:10px;margin:10px 0 20px 0;border:none;border-radius:6px;background:#1a1a40;color:#fff;">
-    <option value="">-- Choose Crypto --</option>
-    <option value="bitcoin">Bitcoin (BTC)</option>
-    <option value="usdt">Tether (USDT)</option>
-    <option value="tron">Tron (TRX)</option>
-    <option value="bnb">BNB</option>
-    <option value="ethereum">Ethereum (ETH)</option>
-    <option value="litecoin">Litecoin (LTC)</option>
-  </select>
-
-  <label>Wallet Address:</label>
-  <input type="text" placeholder="Paste your wallet address" required style="width:100%;padding:10px;margin-bottom:15px;background:#1a1a40;color:#fff;border:none;border-radius:6px;">
-
-  <label>Amount to Withdraw:</label>
-  <input type="number" placeholder="Enter amount" required style="width:100%;padding:10px;margin-bottom:15px;background:#1a1a40;color:#fff;border:none;border-radius:6px;">
-
-  <label>Network (e.g. TRC20, ERC20, BEP20):</label>
-  <input type="text" placeholder="Enter network type" required style="width:100%;padding:10px;margin-bottom:15px;background:#1a1a40;color:#fff;border:none;border-radius:6px;">
-
-  <button style="width:100%;padding:12px;margin-top:10px;background:#00ffcc;color:#000;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">Submit Withdrawal</button>
-</div><br><br>
-
-
-
-<div style="max-width:600px;margin:50px auto;background:#1c1c3c;padding:25px;border-radius:10px;box-shadow:0 0 15px #ffcc00a0;color:#fff;font-family:sans-serif;">
-  <h2 style="text-align:center;color:#ffcc00;">Withdraw via Gift Card</h2>
-
-  <label for="cardType">Select Gift Card Type:</label>
-  <select id="cardType" style="width:100%;padding:10px;margin:10px 0 20px 0;border:none;border-radius:6px;background:#2c2c60;color:#fff;">
-    <option value="">-- Choose Gift Card --</option>
-    <option value="amazon">Amazon</option>
-    <option value="steam">Steam</option>
-    <option value="itunes">iTunes</option>
-    <option value="googleplay">Google Play</option>
-    <option value="apple">Apple Store</option>
-    <option value="walmart">Walmart</option>
-    <option value="visa">Visa Gift Card</option>
-  </select>
-
-  <label>Card Value ($):</label>
-  <input type="number" placeholder="Enter card value" required style="width:100%;padding:10px;margin-bottom:15px;background:#2c2c60;color:#fff;border:none;border-radius:6px;">
-
-  <label>Email to Receive Gift Card:</label>
-  <input type="email" placeholder="Enter your email address" required style="width:100%;padding:10px;margin-bottom:15px;background:#2c2c60;color:#fff;border:none;border-radius:6px;">
-
-  <button style="width:100%;padding:12px;margin-top:10px;background:#ffcc00;color:#000;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">Submit Gift Card Withdrawal</button>
-</div><br><br>
-
-
-
-
-<div style="max-width:600px;margin:50px auto;background:#16213e;padding:25px;border-radius:10px;box-shadow:0 0 15px #00ffffa0;color:#fff;font-family:sans-serif;">
-  <h2 style="text-align:center;color:#00ffff;">Withdraw via Sports Betting Wallet</h2>
-
-  <label for="bettingPlatform">Select Betting Platform:</label>
-  <select id="bettingPlatform" required style="width:100%;padding:10px;margin:10px 0 20px 0;border:none;border-radius:6px;background:#23395d;color:#fff;">
-    <option value="">-- Choose Platform --</option>
-    <option value="bet9ja">Bet9ja</option>
-    <option value="nairabet">NairaBet</option>
-    <option value="sportybet">SportyBet</option>
-    <option value="betway">Betway</option>
-    <option value="1xbet">1xBet</option>
-    <option value="msport">MSport</option>
-    <option value="bangbet">BangBet</option>
-  </select>
-
-  <label>Account Username or ID:</label>
-  <input type="text" placeholder="Enter your betting account ID" required style="width:100%;padding:10px;margin-bottom:15px;background:#23395d;color:#fff;border:none;border-radius:6px;">
-
-  <label>Amount to Withdraw ($):</label>
-  <input type="number" placeholder="Enter amount (minimum $100)" required style="width:100%;padding:10px;margin-bottom:15px;background:#23395d;color:#fff;border:none;border-radius:6px;">
-
-  <button style="width:100%;padding:12px;background:#00ffff;color:#000;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">Submit Withdrawal</button>
-</div>
-
-
-
-
-
-
-
-
-
-
-
+    
+    // Initial call to set the dynamic styles for generated inputs 
+    // is no longer necessary as styles are applied via element selector in CSS.
+  </script>
 </body>
 </html>
