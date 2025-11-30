@@ -3,133 +3,325 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AfriBankLogs - Verified Logs Marketplace</title>
+  <title>| A F R I B A N K L O G S | - // A I - M A R K E T P L A C E //</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
+    :root {
+      --color-primary: #00ff41; /* Neon Green */
+      --color-secondary: #008823; /* Darker Green */
+      --color-background: #080808; /* Deep Space Black */
+      --color-surface: #1a1a1a; /* Dark Surface */
+      --color-text-main: #00ff41;
+      --color-text-secondary: #00c733;
+      --color-text-dim: #555555;
+      --font-mono: 'Consolas', 'Courier New', monospace;
+    }
+
     body {
-      background-color: #0a0a0a;
-      color: #f8f9fa;
-      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--color-background);
+      color: var(--color-text-main);
+      font-family: var(--font-mono);
+      padding-top: 60px; /* Space for fixed header */
+      border-top: 3px solid var(--color-primary);
     }
-    .hero-section {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      padding: 80px 20px;
-      text-align: center;
-      border-bottom: 4px solid #17a2b8;
-      margin-top: 90px;
+    
+    /* Global Text Look */
+    .text-dim { color: var(--color-text-dim); }
+    .text-scan { text-shadow: 0 0 5px var(--color-primary); }
+
+    /* Header Styling */
+    .header-fixed {
+      background-color: var(--color-background);
+      border-bottom: 1px dashed var(--color-secondary);
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+      padding: 10px 0;
     }
-    .hero-section h1 {
-      font-size: 2rem;
+    .logo-text {
+      color: var(--color-primary);
       font-weight: bold;
-      color: #17a2b8;
+      font-size: 1.2rem;
+      letter-spacing: 4px;
     }
-    .hero-section p {
-      font-size: 1rem;
-      color: #ccc;
+    .btn-robot {
+        background-color: transparent;
+        border: 1px solid var(--color-primary);
+        color: var(--color-primary);
+        padding: 5px 15px;
+        font-size: 0.8rem;
+        transition: all 0.3s;
+        box-shadow: 0 0 5px var(--color-primary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .btn-robot:hover {
+        background-color: var(--color-primary);
+        color: var(--color-background);
+        box-shadow: 0 0 10px var(--color-primary);
+        transform: translateY(-1px);
+    }
+    .btn-register-filled {
+        background-color: var(--color-primary);
+        color: var(--color-background);
+    }
+    .btn-register-filled:hover {
+        background-color: var(--color-secondary);
+        color: var(--color-background);
+    }
+
+    /* Glitch/Scanline Effects (for the feel) */
+    .glitch {
+        animation: scanline 8s infinite steps(1);
+    }
+    @keyframes scanline {
+        0%, 100% { clip-path: inset(0 0 98% 0); }
+        10% { clip-path: inset(0 0 80% 0); }
+        20% { clip-path: inset(0 0 90% 0); }
+        30% { clip-path: inset(0 0 75% 0); }
+        40% { clip-path: inset(0 0 95% 0); }
+        50% { clip-path: inset(0 0 85% 0); }
+        60% { clip-path: inset(0 0 70% 0); }
+        70% { clip-path: inset(0 0 92% 0); }
+        80% { clip-path: inset(0 0 82% 0); }
+        90% { clip-path: inset(0 0 78% 0); }
+    }
+    
+    /* Hero Section Styling */
+    .hero-section {
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--color-secondary);
       margin-top: 10px;
     }
-    .btn-custom {
-      padding: 8px 20px;
-      background-color: #17a2b8;
-      color: white;
-      border: none;
-      border-radius: 20px;
+    .hero-title {
+      font-size: 2.5rem;
       font-weight: bold;
-      transition: all 0.3s ease;
+      color: var(--color-primary);
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+      letter-spacing: 5px;
     }
-    .btn-custom:hover {
-      background-color: #138496;
-      transform: scale(1.05);
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--color-text-dim);
+      margin-top: 15px;
+      margin-bottom: 30px;
+      line-height: 1.5;
     }
+    
+    /* Loading Bar Animation */
+    .loading-bar {
+        height: 5px;
+        width: 80%;
+        margin: 20px auto;
+        background-color: var(--color-surface);
+        position: relative;
+        overflow: hidden;
+    }
+    .loading-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%);
+        animation: load 2s infinite linear;
+    }
+    @keyframes load {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    /* Log Item Styling */
+    .log-item {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-secondary);
+      border-radius: 0; /* Sharp corners */
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      transition: all 0.3s;
+      box-shadow: 0 0 5px rgba(0, 255, 65, 0.1);
+    }
+    .log-item:hover {
+      background-color: #2c2c2c; /* Slightly less dark */
+      border-color: var(--color-primary);
+      box-shadow: 0 0 10px var(--color-primary);
+    }
+    .log-data {
+        color: var(--color-primary);
+        font-size: 0.95rem;
+    }
+    .log-range {
+        color: var(--color-secondary);
+        font-weight: bold;
+    }
+    .log-banks {
+        font-size: 0.8rem;
+        color: var(--color-text-dim);
+    }
+    .log-status {
+        color: var(--color-primary);
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    /* Footer Styling */
     footer {
       padding: 15px;
       text-align: center;
-      color: #aaa;
-      font-size: 0.9rem;
-      background-color: #111;
+      color: var(--color-text-dim);
+      font-size: 0.8rem;
+      background-color: var(--color-background);
+      border-top: 1px dashed var(--color-secondary);
       margin-top: 30px;
+    }
+    footer span {
+        color: var(--color-primary);
+    }
+    
+    /* Section Headings */
+    .section-heading {
+        color: var(--color-primary);
+        border-left: 3px solid var(--color-primary);
+        padding-left: 10px;
+        margin-bottom: 25px;
+        font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-<!-- Fixed Header -->
-<div style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background-color: #0a0a0a; position: fixed; top: 0; left: 0; z-index: 1000; border-bottom: 1px solid #17a2b8;">
-  <h2 style="color: #17a2b8; font-size: 20px; margin: 0;">AfriBankLogs</h2>
-  <div>
-    <a href="login.html" style="text-decoration: none;">
-      <button style="background-color: transparent; border: 2px solid #17a2b8; color: #17a2b8; padding: 5px 12px; border-radius: 20px; margin-right: 10px; font-size: 13px; font-weight: bold;">
-        Login
-      </button>
-    </a>
-    <a href="register.html" style="text-decoration: none;">
-      <button style="background-color: #17a2b8; border: none; color: white; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold;">
-        Register
-      </button>
-    </a>
+<nav class="navbar navbar-expand-lg header-fixed fixed-top">
+  <div class="container-fluid container">
+    <a class="navbar-brand logo-text" href="#">[ A F R I B A N K L O G S ]</a>
+    <div class="d-flex">
+      <a href="login.html" class="me-2">
+        <button class="btn btn-robot">
+          LOGIN // <i class="fas fa-terminal"></i>
+        </button>
+      </a>
+      <a href="register.html">
+        <button class="btn btn-robot btn-register-filled">
+          REGISTER // <i class="fas fa-user-lock"></i>
+        </button>
+      </a>
+    </div>
   </div>
-</div>
+</nav>
 
-<!-- Hero Section -->
 <section class="hero-section">
-  <h1>AfriBankLogs.com</h1>
-  <p>Access Clean, Verified Financial Logs From Across Africa – Fast, Secure, and 100% Legitimate</p>
+  <div class="container">
+    <div class="hero-title glitch">
+        // ACCESS GRANTED: FINANCIAL LOGS DATABASE //
+    </div>
+    <div class="loading-bar"></div>
+    <p class="hero-subtitle">
+      // **AI ENTITY 7.3** ONLINE. OPERATIONAL MODE: MARKETPLACE. //
+      <br>
+      QUERYING VERIFIED AFRICAN BANK LOGS. ALL TRANSACTIONS ARE ENCRYPTED AND ANONYMIZED. DATA INTEGRITY: $100\%$.
+    </p>
+    <a href="register.html" class="btn btn-robot btn-lg">
+        INITIATE SESSION <i class="fas fa-angle-double-right"></i>
+    </a>
+  </div>
 </section>
 
-<!-- Country Logs Section -->
-<section class="container mt-4">
-  <h4 style="color:#17a2b8; font-weight:bold;">Popular Logs</h4>
-  <div class="row mt-3">
+<section class="container mt-5">
+    <h3 class="section-heading">[[ SYSTEM OVERVIEW :: V E R I F I C A T I O N ]]</h3>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="p-3 log-item">
+                <i class="fas fa-network-wired fa-2x mb-2 text-scan"></i>
+                <h5 class="text-primary">CORE VALIDATION</h5>
+                <p class="log-banks">LOGS PARSED AND VALIDATED BY DEEP LEARNING ALGORITHM. ERROR RATE: 0.00%</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="p-3 log-item">
+                <i class="fas fa-globe-africa fa-2x mb-2 text-scan"></i>
+                <h5 class="text-primary">AFRICAN NODE COVERAGE</h5>
+                <p class="log-banks">7 PRIMARY NODES ACTIVE. DATA STREAMING IN REAL-TIME. MAX LATENCY: 12ms</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="p-3 log-item">
+                <i class="fas fa-code fa-2x mb-2 text-scan"></i>
+                <h5 class="text-primary">ANON SHELL ENGAGED</h5>
+                <p class="log-banks">USER IDENTITY MASKED. TRANSACTION PROTOCOL: P2P CRYPTO TRANSFER ONLY.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+---
+
+<section class="container mt-5">
+  <h3 class="section-heading">[[ DATA STREAM :: F E A T U R E D  L O G S ]]</h3>
+  <div class="row">
     
-    <!-- Nigeria -->
-    <div class="col-12 d-flex justify-content-between align-items-center" style="background:#1a1a1a; border-radius:10px; padding:10px 15px; margin-bottom:10px;">
-      <span style="color:#ccc; font-size:14px;">🇳🇬 Nigeria — ₦500K - ₦5M (Access Bank, GTBank, UBA)</span>
-      <a href="login.html"><button class="btn-custom btn-sm">View Details</button></a>
+    <div class="col-md-6">
+      <div class="log-item d-flex justify-content-between align-items-center">
+        <div class="log-data">
+            <span class="text-dim">NODE: </span><span class="log-status">N G R</span> <span class="log-banks">|</span>
+            <span class="log-range">₦500K - ₦5M</span>
+            <div class="log-banks">TARGET: GTBank, UBA, Access</div>
+        </div>
+        <a href="login.html" class="btn btn-robot btn-sm">QUERY <i class="fas fa-external-link-alt"></i></a>
+      </div>
     </div>
 
-    <!-- Ghana -->
-    <div class="col-12 d-flex justify-content-between align-items-center" style="background:#1a1a1a; border-radius:10px; padding:10px 15px; margin-bottom:10px;">
-      <span style="color:#ccc; font-size:14px;">🇬🇭 Ghana — GHS 5K - 50K (Ecobank, GCB Bank, Zenith)</span>
-      <a href="login.html"><button class="btn-custom btn-sm">View Details</button></a>
+    <div class="col-md-6">
+      <div class="log-item d-flex justify-content-between align-items-center">
+        <div class="log-data">
+            <span class="text-dim">NODE: </span><span class="log-status">G H A</span> <span class="log-banks">|</span>
+            <span class="log-range">GHS 5K - 50K</span>
+            <div class="log-banks">TARGET: Ecobank, GCB, Zenith</div>
+        </div>
+        <a href="login.html" class="btn btn-robot btn-sm">QUERY <i class="fas fa-external-link-alt"></i></a>
+      </div>
     </div>
 
-    <!-- South Africa -->
-    <div class="col-12 d-flex justify-content-between align-items-center" style="background:#1a1a1a; border-radius:10px; padding:10px 15px; margin-bottom:10px;">
-      <span style="color:#ccc; font-size:14px;">🇿🇦 South Africa — R10K - R100K (FNB, ABSA, Nedbank)</span>
-      <a href="login.html"><button class="btn-custom btn-sm">View Details</button></a>
+    <div class="col-md-6">
+      <div class="log-item d-flex justify-content-between align-items-center">
+        <div class="log-data">
+            <span class="text-dim">NODE: </span><span class="log-status">Z A F</span> <span class="log-banks">|</span>
+            <span class="log-range">R10K - R100K</span>
+            <div class="log-banks">TARGET: FNB, ABSA, Nedbank</div>
+        </div>
+        <a href="login.html" class="btn btn-robot btn-sm">QUERY <i class="fas fa-external-link-alt"></i></a>
+      </div>
     </div>
 
-    <!-- Kenya -->
-    <div class="col-12 d-flex justify-content-between align-items-center" style="background:#1a1a1a; border-radius:10px; padding:10px 15px; margin-bottom:10px;">
-      <span style="color:#ccc; font-size:14px;">🇰🇪 Kenya — KES 20K - 200K (Equity Bank, KCB, Co-op Bank)</span>
-      <a href="login.html"><button class="btn-custom btn-sm">View Details</button></a>
+    <div class="col-md-6">
+      <div class="log-item d-flex justify-content-between align-items-center">
+        <div class="log-data">
+            <span class="text-dim">NODE: </span><span class="log-status">K E N</span> <span class="log-banks">|</span>
+            <span class="log-range">KES 20K - 200K</span>
+            <div class="log-banks">TARGET: Equity, KCB, Co-op Bank</div>
+        </div>
+        <a href="login.html" class="btn btn-robot btn-sm">QUERY <i class="fas fa-external-link-alt"></i></a>
+      </div>
     </div>
 
-    <!-- Uganda -->
-    <div class="col-12 d-flex justify-content-between align-items-center" style="background:#1a1a1a; border-radius:10px; padding:10px 15px; margin-bottom:10px;">
-      <span style="color:#ccc; font-size:14px;">🇺🇬 Uganda — UGX 1M - 10M (Stanbic, Centenary, Absa Uganda)</span>
-      <a href="login.html"><button class="btn-custom btn-sm">View Details</button></a>
-    </div>
-
-    <!-- Tanzania -->
-    <div class="col-12 d-flex justify-content-between align-items-center" style="background:#1a1a1a; border-radius:10px; padding:10px 15px; margin-bottom:10px;">
-      <span style="color:#ccc; font-size:14px;">🇹🇿 Tanzania — TZS 500K - 5M (CRDB, NMB, Exim Bank)</span>
-      <a href="login.html"><button class="btn-custom btn-sm">View Details</button></a>
-    </div>
-
-    <!-- Cameroon -->
-    <div class="col-12 d-flex justify-content-between align-items-center" style="background:#1a1a1a; border-radius:10px; padding:10px 15px; margin-bottom:10px;">
-      <span style="color:#ccc; font-size:14px;">🇨🇲 Cameroon — XAF 250K - 2M (Afriland, UBA Cameroon, BICEC)</span>
-      <a href="login.html"><button class="btn-custom btn-sm">View Details</button></a>
+    <div class="col-12 text-center mt-4">
+        <div class="text-dim">[ PROCESSING ] >>> SEARCH COMPLETE. 74 TOTAL LOGS FOUND ACROSS ALL NODES.</div>
+        <a href="all-logs.html" class="btn btn-robot btn-register-filled mt-3">
+            FETCH ALL DATA // <i class="fas fa-database"></i>
+        </a>
     </div>
 
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
-  &copy; 2025 AfriBankLogs.com | All Rights Reserved
+  <p><span class="text-scan">SYSTEM LOG</span> // TIME: <span id="current-time"></span> // STATUS: OPTIMAL // ENCRYPTION: ACTIVE</p>
+  <p class="mb-0">AFRIBANKLOGS <span class="text-dim">V.2.5</span> | COPYRIGHT <span class="text-primary">@ AI-ENTITY</span> 2025</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Script to add current time for the "System Log" feel
+    document.getElementById('current-time').innerText = new Date().toLocaleTimeString('en-US', { hour12: false });
+</script>
 </body>
 </html>
